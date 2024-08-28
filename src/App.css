@@ -1,38 +1,183 @@
-.App {
-  text-align: center;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Layout */
+
+.layout-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+}
+header {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  height: 100px;
+}
+section {
+  grid-column: 1 / -1;
+  background-color: greenyellow;
+  height: 400px;
+}
+main {
+  grid-column: 1 / -1;
+  margin-top: 5rem;
+  height: 750px;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto;
+}
+.main-container form {
+  grid-column:1 / -1;
+  background-color: #EDEFEE;
+  border-radius: 32px;
+}
+.main-container aside {
+  grid-column:1 / -1;
+  background-color: rgb(61, 216, 0);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+footer {
+  grid-column: 1 / -1;
+  background-color: #F4CE14;
+  height: 250px;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .main-container form {
+    grid-column:1 / 6;
+  }
+  .main-container aside {
+    grid-column:6 / -1;
   }
 }
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .main-container {
+    grid-column: 3 / 11;
+  }
+  .main-container aside {
+  margin-left: 50px;
+  margin-top: 50px;
+  }
+  footer {
+    margin-top: -5rem;
+    z-index:-1;
+    }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Font Styling */
+
+h1 {
+  font-size: 4rem;
+  color: #F4CE14;
+}
+h2 {
+  font-size: 2rem;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+h3 {
+  font-size: 3rem;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Header Styling */
+
+nav {
+  grid-column: 3 / 11;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.nav-logo-container {
+  flex: 1;
+  justify-content: flex-start;
+}
+.nav-logo-container img {
+  height: 50px;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  margin-left: 20px;
+}
+nav ul.login {
+  color:#495E57;
+  width: auto;
+  flex: 1;
+  justify-content: flex-end;
+}
+nav ul li {
+  list-style: none;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+nav ul.login li {
+  font-weight: bold;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* Hero */
+.hero {
+  background-image: url('./images/little-lemon-dining.jpg');
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.hero-h1 {
+text-align: center;
+margin-top: 2.5rem;
+}
+.hero-h2 {
+  text-align: center;
+  font-weight: normal;
 }

@@ -1,13 +1,23 @@
+import logo from '../../images/Logo.svg';
+
 function Nav(){
     return(
         <nav>
+            <div className="nav-logo-container">
+                <img
+                    src={logo}
+                    alt="Little Lemon Logo"
+                />
+            </div>
             <ul>
-                <li>About</li>
-                <li>Menu</li>
-                <li>Reservations</li>
-                <li>Order</li>
-                <li>Online</li>
-                <li>Login</li>
+                <li>ABOUT</li>
+                <li>MENU</li>
+                <li>RESERVATIONS</li>
+                <li>ORDER</li>
+                <li>ONLINE</li>
+            </ul>
+            <ul className="login" >
+                <li>LOGIN</li>
             </ul>
         </nav>
     )

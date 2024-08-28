@@ -3,7 +3,7 @@ import Aside from './Aside.js'
 
 function Main(){
     return(
-        <main>
+        <main className="main-container">
             <Form />
             <Aside />
         </main>
