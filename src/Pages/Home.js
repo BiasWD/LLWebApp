@@ -1,12 +1,8 @@
-import Header from '../Components/Header/Header.js'
-import Footer from '../Components/Footer.js'
+import HomeMain from '../Components/Main/HomeMain.js';
 
 function Home(){
     return(
-        <div className="layout-container">
-            <Header />
-            <Footer />
-        </div>
+        <HomeMain />
     )
 }
 

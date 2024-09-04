@@ -1,19 +1,24 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header/Header.js'
+import Footer from './Components/Footer.js'
 import Home from './Pages/Home.js'
 import Booking from './Pages/Booking.js'
 
 import './App.css';
 
-const router = createBrowserRouter([{
-  path: '/',
-  element: <Booking />
-},
-])
-
 function App() {
   return (
-    <RouterProvider router={router} />
+<BrowserRouter>
+  <div className="layout-container">
+      <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/booking" element={<Booking />} />
+        </Routes>
+      <Footer />
+  </div>
+</BrowserRouter>
   );
 }
 

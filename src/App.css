@@ -82,6 +82,10 @@ main {
   flex-direction: column;
 }
 
+.home-main {
+  height: 1000px;
+}
+
 footer {
   grid-column: 1 / -1;
   background-color: #F4CE14;
