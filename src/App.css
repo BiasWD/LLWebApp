@@ -61,11 +61,10 @@ section {
 }
 main {
   grid-column: 1 / -1;
-  margin-top: 5rem;
+  margin-top: 55px;
+  margin-left: 10px;
+  margin-right: 10px;
   max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 .main-container {
   display: grid;
@@ -79,7 +78,6 @@ main {
 }
 .main-container aside {
   grid-column:1 / -1;
-  background-color: rgb(61, 216, 0);
   display: flex;
   flex-direction: column;
 }
@@ -88,31 +86,6 @@ footer {
   grid-column: 1 / -1;
   background-color: #F4CE14;
   height: 250px;
-}
-
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .main-container form {
-    grid-column:1 / 6;
-  }
-  .main-container aside {
-    grid-column:6 / -1;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .main-container {
-    grid-column: 3 / 11;
-  }
-  .main-container aside {
-  margin-left: 50px;
-  margin-top: 50px;
-  }
-  footer {
-    margin-top: -5rem;
-    z-index:-1;
-    }
-
 }
 
 /* Font Styling */
@@ -129,11 +102,16 @@ h3 {
   font-size: 2.5rem;
   color: black;
 }
+h5 {
+  font-size: 1.25rem;
+}
+h6{
+  font-size: 1.15rem;
+}
 
 /* Header Styling */
 
 nav {
-  grid-column: 3 / 11;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -190,6 +168,7 @@ margin-top: 2.5rem;
 /* Form */
 form {
   padding:25px;
+  margin-bottom: 55px;
 }
 .form-container {
   display: flex;
@@ -230,7 +209,30 @@ form {
 }
 /* Aside */
 .main-container aside {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.aside-divs div {
+  margin-bottom: 55px;
+}
+aside div p {
+  margin-top: 10px;
+}
+
+div.contact-us {
+  display:flex;
+  border-radius: 16px;
+  border: solid;
+  border-width: thin;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+}
+.aside-img {
+  display: none;
+  border-radius: 32px;
 }
 
 
@@ -240,4 +242,54 @@ footer {
 }
 footer p {
   padding-top: 200px;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  nav {
+    margin-left: 55px;
+    margin-right: 55px;
+    grid-column:1 / -1;
+  }
+  .main-container {
+    margin-top: 5rem;
+    margin-left: 55px;
+    margin-right: 55px;
+    grid-gap: 55px;
+ }
+  .main-container form {
+    grid-column:1 / 6;
+    margin-bottom: 0;
+  }
+  .main-container aside {
+    grid-column:6 / -1;
+  }
+  .aside-img {
+    display: block;
+  }
+  footer {
+    z-index:-1;
+    margin-top: -5rem;
+  }
+}
+@media only screen and (min-width: 1279px) {
+  /* For desktop: */
+  nav {
+  grid-column: 3 / 11;
+  }
+  .main-container {
+    grid-column: 3 / 11;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .main-container aside {
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+  .main-container aside {
+    justify-content: space-between;
+  }
+
 }
