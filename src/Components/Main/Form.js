@@ -1,17 +1,13 @@
+import DropdownButton from "../FormSelection/DropdownButton";
+import OccasionIcon from  "../../images/OccasionIcon.png";
+
 function Form(){
     return(
         <form>
             <h3>Reservation Details</h3>
                 <div className='form-container'>
-                    <div className='input-box'>
-                        <label for="occasion">Occasion</label>
-                        <select id="occasion">
-                            <option>Birthday</option>
-                            <option>Engagement</option>
-                            <option>Anniversiary</option>
-                        </select>
-                    </div>
-                    <div className='input-box'></div>
+                    <DropdownButton image={<img src={OccasionIcon} />} options={["Anniversary", "Birthday", "Engagement"]} placeholder="Occasion"/>
+                    <DropdownButton image={<img src={OccasionIcon} />} options={["Indoor", "Outdoor", "Any"]} placeholder="Seating"/>
                     <div className='input-box'></div>
                     <div className='input-box'></div>
                     <div className='input-box'></div>
