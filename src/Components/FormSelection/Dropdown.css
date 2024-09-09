@@ -18,6 +18,10 @@
     font-size: 1.25rem;
     cursor: pointer;
   }
+  .selected {
+    color:#EDEFEE;
+    background-color:#495E57;
+  }
   .DropdownButton div:first-of-type {
     margin-left: 15px;
     margin-top: 15px;

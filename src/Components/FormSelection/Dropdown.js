@@ -1,6 +1,6 @@
 import './Dropdown.css';
 
-function Dropdown( {options, dropdownClose} ){
+function Dropdown( {options, dropdownClose, setSelection} ){
 
     return(
         <div className="Dropdown">
@@ -9,6 +9,7 @@ function Dropdown( {options, dropdownClose} ){
                     key={index}
                     className='DropdownOption'
                     onClick={() => {
+                        setSelection(option);
                         dropdownClose();
                     }}>
                     {option}

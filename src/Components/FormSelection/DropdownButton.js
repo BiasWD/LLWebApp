@@ -4,7 +4,7 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { IconChevronUp } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
-function DropdownButton({ image, options, placeholder }) {
+function DropdownButton({ image, options, placeholder, selectedOption, optionSelection }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,13 +18,13 @@ function DropdownButton({ image, options, placeholder }) {
 
     return (
         <div className="DropdownWrapper">
-            <div className="DropdownButton" onClick={toggleDropdown}>
+            <div className={`DropdownButton ${selectedOption ? 'selected' : ''}`} onClick={toggleDropdown}>
                 <div>{image}</div>
-                <div>{placeholder}</div>
+                <div>{selectedOption || placeholder}</div>
                 <div>{isOpen ? <IconChevronUp /> : <IconChevronDown />}</div>
             </div>
             {isOpen && (
-                <Dropdown options={options} dropdownClose={closeDropdown} />
+                <Dropdown options={options} dropdownClose={closeDropdown} setSelection={optionSelection} />
             )
             }
         </div>
