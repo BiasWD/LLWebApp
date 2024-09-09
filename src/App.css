@@ -56,7 +56,6 @@ header {
 }
 section {
   grid-column: 1 / -1;
-  background-color: greenyellow;
   height: 400px;
 }
 main {
@@ -223,21 +222,52 @@ form {
 .comment-box {
   height: 180px;
   width: 100%;
+  box-sizing:border-box;
   margin-bottom: 15px;
   margin-top: 15px;
+  padding: 15px;
   border-radius: 16px;
+  background-color: #333333;
+  color:#EDEFEE;
+  font-size: 1.25rem;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:1.25rem;
+}
+.input-complete {
   background-color: #495E57;
 }
 .next-box {
   height: 55px;
   width: 25%;
   margin-top: 25px;
-  margin-bottom: px;
   margin-right: auto;
   margin-left: auto;
   background-color: #F4CE14;
   border-radius: 16px;
 }
+/*Step 2 Styles*/
+.contact-input {
+  position: relative;
+  background-color: #333333;
+  display: flex;
+  height: 55px;
+  flex: 1 1 45%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  min-width: 200px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  border: 1px solid #333333;;
+  color:#EDEFEE;
+  font-size: 1.25rem;
+  padding: 14px;
+}
+.fullwidth-input {
+  flex: 1 1 100%;
+}
+label {display: none};
+
 /* Aside */
 .main-container aside {
   display: flex;

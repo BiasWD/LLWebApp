@@ -1,6 +1,6 @@
 import './Dropdown.css';
 
-function Dropdown( {options, dropdownClose, setSelection} ){
+function Dropdown( {options, dropdownClose, setSelection, disabled} ){
 
     return(
         <div className="Dropdown">
@@ -8,7 +8,10 @@ function Dropdown( {options, dropdownClose, setSelection} ){
                 <div
                     key={index}
                     className='DropdownOption'
-                    onClick={() => {
+                    onClick={ disabled ?  () => {
+                        dropdownClose();
+                    } :
+                        () => {
                         setSelection(option);
                         dropdownClose();
                     }}>
