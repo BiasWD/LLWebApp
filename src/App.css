@@ -257,7 +257,24 @@ form {
   margin-left:10px;
   background-color: #F4CE14;
   border-radius: 16px;
+  border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.next-box:hover {
+  background-color:#333333;
+  color:#F4CE14;
+}
+.submit-button:hover {
+  background-color:#495E57;
+  color: white;
+}
+.next-box:active {
+  background-color: black;
+}
+.next-box:disabled {
+  color:#333333;
+  background-color: #f4cf14ad;
 }
 /*Step 2 Styles*/
 .contact-input {
@@ -333,7 +350,6 @@ div.contact-us {
   display: none;
   border-radius: 32px;
 }
-
 
 /* Footer */
 footer {

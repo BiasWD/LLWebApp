@@ -2,7 +2,7 @@ import DropdownButton from "../FormSelection/DropdownButton";
 import OccasionIcon from "../../images/OccasionIcon.png";
 import { useState } from "react";
 
-function Form() {
+function Form({ openTimes, updateTimes }) {
 
   const [step, setStep] = useState(1);
   const nextStep = () => setStep(step + 1);
@@ -15,15 +15,17 @@ function Form() {
   const [time, setTime] = useState("");
   const [comment, setComment] = useState("");
 
-  const [availableTimes, setavailableTimes] = useState(["10:00 AM", "11:00 AM", "12:00 PM",
-    "1:00 PM", "2:00 PM", "3:00 PM",
-    "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM"]);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState("")
+
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setDate(newDate);
+    updateTimes(newDate);
+  }
 
   return (
     <form>
@@ -41,11 +43,11 @@ function Form() {
                   id="date"
                   name="date"
                   value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  onChange={handleDateChange}
                 >
                 </input>
               </div>
-              <DropdownButton image={<img src={OccasionIcon} />} options={date ? availableTimes : ["Please select a date"]} placeholder="Time" selectedOption={time} optionSelection={setTime} disabled={date ? false : true} />
+              <DropdownButton image={<img src={OccasionIcon} />} options={date ? openTimes : ["Please select a date"]} placeholder="Time" selectedOption={time} optionSelection={setTime} disabled={date ? false : true} />
               <div className='input-box'></div>
               <textarea
                 className={`comment-box ${comment ? 'input-complete' : ''}`}
@@ -58,7 +60,14 @@ function Form() {
           </div>
           <div className="form-bottom">
             <div className='form-prog-btn-container'>
-              <div className='next-box' onClick={nextStep}>Next</div>
+              <button
+                type="button"
+                className='next-box'
+                onClick={nextStep}
+                disabled={!partySize || !seating || !occasion || !date || !time}
+              >
+                Next
+              </button>
             </div>
           </div>
         </>)
@@ -109,7 +118,6 @@ function Form() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
               <label htmlFor="subscribe" className="showlabel">Subscribe me to promotional emails:</label>
               <input
@@ -133,8 +141,14 @@ function Form() {
               <p><strong>Comment: </strong>{comment}</p>
             </div>
             <div className='form-prog-btn-container'>
-              <div className='next-box' onClick={prevStep}>Back</div>
-              <div className='next-box'>Submit</div>
+              <button type="button" className='next-box' onClick={prevStep}>Back</button>
+              <button
+                type="submit"
+                className='next-box submit-button'
+                disabled={!firstName || !lastName || !phoneNumber}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </>
