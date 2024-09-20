@@ -1,8 +1,6 @@
 import Form from './Form.js'
 import Aside from './Aside.js'
 import { useReducer } from "react";
-import { useState } from  "react";
-import { useEffect } from "react";
 
 function Main(){
 
