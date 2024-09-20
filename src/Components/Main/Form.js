@@ -1,8 +1,8 @@
 import DropdownButton from "../FormSelection/DropdownButton";
 import OccasionIcon from "../../images/OccasionIcon.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Form({ openTimes, updateTimes }) {
+function Form({ openTimes, updateTimes, initializeTimes }) {
 
   const [step, setStep] = useState(1);
   const nextStep = () => setStep(step + 1);
@@ -22,10 +22,14 @@ function Form({ openTimes, updateTimes }) {
   const [subscribed, setSubscribed] = useState("")
 
   const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    setDate(newDate);
-    updateTimes(newDate);
+    const newDateString = e.target.value;
+    setDate(newDateString);
+    setTime("");
   }
+
+  useEffect(() => {
+    updateTimes(new Date(date))
+  }, [date, updateTimes]);
 
   return (
     <form>

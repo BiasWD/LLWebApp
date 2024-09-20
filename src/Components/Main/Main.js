@@ -1,26 +1,53 @@
 import Form from './Form.js'
 import Aside from './Aside.js'
 import { useReducer } from "react";
+import { useState } from  "react";
+import { useEffect } from "react";
 
 function Main(){
 
-    const initializeTimes = () => {
-        return ["10:00 AM", "11:00 AM", "12:00 PM",
-        "1:00 PM", "2:00 PM", "3:00 PM",
-        "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM"]
+    const seededRandom = function (seed) {
+        var m = 2**35 - 31;
+        var a = 185852;
+        var s = seed % m;
+        return function () {
+            return (s = s * a % m) / m;
+        };
+    }
+
+    const fetchAPI = function(date) {
+        let result = [];
+        let random = seededRandom(date.getDate());
+
+        for(let i = 17; i <= 23; i++) {
+            if(random() < 0.5) {
+                result.push(i + ':00');
+            }
+            if(random() < 0.5) {
+                result.push(i + ':30');
+            }
+        }
+        return result;
+    };
+    const submitAPI = function(formData) {
+        return true;
+    };
+
+    const fetchTimes = (date) => {
+        return fetchAPI(date);
     };
 
     function timesReducer(times, action) {
         switch (action.type) {
             case 'updated_times':
-                return action.payload;
+                return fetchTimes(action.payload);
             default: return times;
         }
     }
-    const [times, dispatch] = useReducer(timesReducer, initializeTimes());
+    const [times, dispatch] = useReducer(timesReducer, []);
 
     const updateTimes = (date) => {
-        dispatch({type: 'updated_times', payload: times})};
+        dispatch({type: 'updated_times', payload: date})};
 
     return(
         <main className="main-container">
