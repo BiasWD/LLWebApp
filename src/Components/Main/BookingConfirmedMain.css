@@ -1,0 +1,16 @@
+.booking-confirmed {
+    text-align: center;
+    min-height: 815px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.confirmed-div {
+    padding: 5rem;
+    border-bottom: 1px solid black;
+    margin-bottom: 2rem;
+}
+.booking-confirmed-text {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

@@ -27,9 +27,6 @@ function Main(){
         }
         return result;
     };
-    const submitAPI = function(formData) {
-        return true;
-    };
 
     const fetchTimes = (date) => {
         return fetchAPI(date);

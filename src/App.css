@@ -46,7 +46,9 @@ table {
 .layout-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+
 }
 header {
   grid-column: 1 / -1;
@@ -89,7 +91,7 @@ main {
 footer {
   grid-column: 1 / -1;
   background-color: #F4CE14;
-  height: 250px;
+  height: 450px;;
 }
 
 /* Font Styling */
@@ -357,6 +359,11 @@ footer {
 }
 footer p {
   padding-top: 200px;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
 }
 
 @media only screen and (min-width: 600px) {
