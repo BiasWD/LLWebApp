@@ -294,6 +294,7 @@ form {
   color:#EDEFEE;
   font-size: 1.25rem;
   padding: 14px;
+  transition: background-color 0.3s ease;
 }
 .fullwidth-input {
   flex: 1 1 100%;

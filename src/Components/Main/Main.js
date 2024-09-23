@@ -1,55 +1,56 @@
-import Form from './Form.js'
-import Aside from './Aside.js'
+import Form from "./Form.js";
+import Aside from "./Aside.js";
 import { useReducer } from "react";
 
-function Main(){
-
-    const seededRandom = function (seed) {
-        var m = 2**35 - 31;
-        var a = 185852;
-        var s = seed % m;
-        return function () {
-            return (s = s * a % m) / m;
-        };
-    }
-
-    const fetchAPI = function(date) {
-        let result = [];
-        let random = seededRandom(date.getDate());
-
-        for(let i = 17; i <= 23; i++) {
-            if(random() < 0.5) {
-                result.push(i + ':00');
-            }
-            if(random() < 0.5) {
-                result.push(i + ':30');
-            }
-        }
-        return result;
+function Main() {
+  const seededRandom = function (seed) {
+    var m = 2 ** 35 - 31;
+    var a = 185852;
+    var s = seed % m;
+    return function () {
+      return (s = (s * a) % m) / m;
     };
+  };
 
-    const fetchTimes = (date) => {
-        return fetchAPI(date);
-    };
+  const fetchAPI = function (date) {
+    let result = [];
+    let random = seededRandom(date.getDate());
 
-    function timesReducer(times, action) {
-        switch (action.type) {
-            case 'updated_times':
-                return fetchTimes(action.payload);
-            default: return times;
-        }
+    for (let i = 17; i <= 23; i++) {
+      if (random() < 0.5) {
+        result.push(i + ":00");
+      }
+      if (random() < 0.5) {
+        result.push(i + ":30");
+      }
     }
-    const [times, dispatch] = useReducer(timesReducer, []);
+    return result;
+  };
 
-    const updateTimes = (date) => {
-        dispatch({type: 'updated_times', payload: date})};
+  const fetchTimes = (date) => {
+    return fetchAPI(date);
+  };
 
-    return(
-        <main className="main-container">
-            <Form openTimes={times} updateTimes={updateTimes}/>
-            <Aside />
-        </main>
-    )
+  function timesReducer(times, action) {
+    switch (action.type) {
+      case "updated_times":
+        return fetchTimes(action.payload);
+      default:
+        return times;
+    }
+  }
+  const [times, dispatch] = useReducer(timesReducer, []);
+
+  const updateTimes = (date) => {
+    dispatch({ type: "updated_times", payload: date });
+  };
+
+  return (
+    <main className="main-container">
+      <Form openTimes={times} updateTimes={updateTimes} />
+      <Aside />
+    </main>
+  );
 }
 
 export default Main;
