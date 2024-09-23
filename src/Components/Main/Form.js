@@ -3,7 +3,7 @@ import OccasionIcon from "../../images/OccasionIcon.png";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Form({ openTimes, updateTimes, initializeTimes }) {
+function Form({ openTimes, updateTimes }) {
   const [step, setStep] = useState(1);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
@@ -101,6 +101,7 @@ function Form({ openTimes, updateTimes, initializeTimes }) {
                   name="date"
                   value={date}
                   onChange={handleDateChange}
+                  data-testid="date-input"
                 ></input>
               </div>
               <DropdownButton
