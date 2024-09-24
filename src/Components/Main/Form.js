@@ -58,20 +58,30 @@ function Form({ openTimes, updateTimes }) {
     }
   };
 
-  const [isValidPhone, setisValidPhone] = useState();
+  const [isComment, setIsComment] = useState();
+
+  const validateComment = () => {
+    if (!comment) {
+      setIsComment(false);
+    } else {
+      setIsComment(true);
+    }
+  };
+
+  const [isValidPhone, setIsValidPhone] = useState();
 
   const validatePhoneNumber = () => {
     const phoneRegex =
       /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
     if (!phoneNumber) {
-      setisValidPhone(false);
+      setIsValidPhone(false);
       return "Phone number is required";
     } else if (!phoneRegex.test(phoneNumber)) {
-      setisValidPhone(false);
+      setIsValidPhone(false);
       console.log("not valid");
       return "Must be a valid phone number";
     }
-    setisValidPhone(true);
+    setIsValidPhone(true);
     return undefined;
   };
 
@@ -197,10 +207,11 @@ function Form({ openTimes, updateTimes }) {
               />
               <div className="input-box"></div>
               <textarea
-                className={`comment-box ${comment ? "input-complete" : ""}`}
+                className={`comment-box ${isComment ? "input-complete" : ""}`}
                 placeholder="Add any additional comments here"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
+                onBlur={validateComment}
               ></textarea>
             </div>
           </div>
