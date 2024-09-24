@@ -57,16 +57,74 @@ function Form({ openTimes, updateTimes }) {
       console.log("form submission failed");
     }
   };
+
   const [isValidPhone, setisValidPhone] = useState();
+
   const validatePhoneNumber = () => {
     const phoneRegex =
       /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-    if (!phoneRegex.test(phoneNumber)) {
+    if (!phoneNumber) {
+      setisValidPhone(false);
+      return "Phone number is required";
+    } else if (!phoneRegex.test(phoneNumber)) {
       setisValidPhone(false);
       console.log("not valid");
       return "Must be a valid phone number";
     }
     setisValidPhone(true);
+    return undefined;
+  };
+
+  const [isValidFirstName, setIsValidFirstName] = useState();
+
+  const validateFirstName = () => {
+    const nameRegex =
+      /^([a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+)*[.]{0,1}){1,2}$/;
+
+    if (!firstName) {
+      setIsValidFirstName(false);
+      return "First name is required";
+    } else if (!nameRegex.test(firstName)) {
+      setIsValidFirstName(false);
+      return "First name must contain only letters";
+    }
+
+    setIsValidFirstName(true);
+    return undefined; // No error message if valid
+  };
+
+  const [isValidLastName, setIsValidLastName] = useState();
+
+  const validateLastName = () => {
+    const nameRegex =
+      /^([a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+)*[.]{0,1}){1,2}$/;
+
+    if (!lastName) {
+      setIsValidLastName(false);
+      return "Last name is required";
+    } else if (!nameRegex.test(lastName)) {
+      setIsValidLastName(false);
+      return "Last name must contain only letters";
+    }
+
+    setIsValidLastName(true);
+    return undefined; // No error message if valid
+  };
+
+  const [isValidEmail, setIsValidEmail] = useState();
+
+  const validateEmail = () => {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (!email) {
+      setIsValidEmail(false);
+      return "Email address is required";
+    } else if (!emailRegex.test(email)) {
+      setIsValidEmail(false);
+      return "Must be a valid email address";
+    }
+
+    setIsValidEmail(true);
     return undefined;
   };
 
@@ -169,13 +227,16 @@ function Form({ openTimes, updateTimes }) {
                 First Name:
               </label>
               <input
-                className="contact-input"
+                className={`contact-input ${
+                  isValidFirstName ? "input-complete" : ""
+                }`}
                 type="text"
                 id="firstName"
                 name="firstName"
                 placeholder="First Name*"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                onBlur={validateFirstName}
                 required
               />
 
@@ -183,13 +244,16 @@ function Form({ openTimes, updateTimes }) {
                 Last Name:
               </label>
               <input
-                className="contact-input"
+                className={`contact-input ${
+                  isValidLastName ? "input-complete" : ""
+                }`}
                 type="text"
                 id="lastName"
                 name="lastName"
                 placeholder="Last Name*"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                onBlur={validateLastName}
                 required
               />
 
@@ -197,7 +261,9 @@ function Form({ openTimes, updateTimes }) {
                 Phone Number:
               </label>
               <input
-                className={`contact-input fullwidth-input ${isValidPhone ? "input-complete" : ""}`}
+                className={`contact-input fullwidth-input ${
+                  isValidPhone ? "input-complete" : ""
+                }`}
                 type="tel"
                 id="phoneNumber"
                 name="phoneNumber"
@@ -212,13 +278,16 @@ function Form({ openTimes, updateTimes }) {
                 Email:
               </label>
               <input
-                className="contact-input fullwidth-input"
+                className={`contact-input fullwidth-input ${
+                  isValidEmail ? "input-complete" : ""
+                }`}
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onBlur={validateEmail}
               />
               <label htmlFor="subscribe" className="showlabel">
                 Subscribe me to promotional emails:
