@@ -60,7 +60,7 @@ function Form({ openTimes, updateTimes }) {
   const [isValidPhone, setisValidPhone] = useState();
   const validatePhoneNumber = () => {
     const phoneRegex =
-      /^\+?[1-9]\d{0,2}[-.\s]?(\(?\d{1,4}?\)?[-.\s]?){1,3}\d{1,4}$/;
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
     if (!phoneRegex.test(phoneNumber)) {
       setisValidPhone(false);
       console.log("not valid");
