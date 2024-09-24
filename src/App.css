@@ -204,24 +204,36 @@ form {
   margin-bottom: 15px;
   margin-top: 15px;
   min-width: 200px;
+  background-color:#333333;
   border-radius: 16px;
   box-sizing: border-box;
-  border:solid 1px #333333
 }
 
 .date-selection-box input {
   width: 100%;
   border-radius: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #41414100;
-  color:#333333;
+  background-color: transparent;
+  color:#75756A;
   font-size:1.2rem;
   border: none;
-  padding: 15px;
+  padding: 16px;
 }
+.date-selection-box .date-selected-input {
+  color:#EDEFEE;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color:#EDEFEE;
+    border-radius: 16px;
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+
+}
+
 .date-selected {
-  border-color:#495E57;
-  background-color: #495e5734;
+  background-color:#495E57 ;
 }
 .comment-box {
   height: 180px;
@@ -237,9 +249,6 @@ form {
   border: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size:1.25rem;
-}
-.input-complete {
-  background-color: #495E57;
 }
 .form-prog-btn-container {
   display: flex;
@@ -281,7 +290,6 @@ form {
 /*Step 2 Styles*/
 .contact-input {
   position: relative;
-  background-color: #333333;
   display: flex;
   height: 55px;
   flex: 1 1 45%;
@@ -290,6 +298,7 @@ form {
   min-width: 200px;
   border-radius: 16px;
   box-sizing: border-box;
+  background-color: #333333;
   border: 1px solid #333333;;
   color:#EDEFEE;
   font-size: 1.25rem;
@@ -324,6 +333,10 @@ form {
 
 .form-bottom {
   border-top:1px solid #333333;
+}
+
+.input-complete {
+  background-color: #495E57;
 }
 
 /* Aside */

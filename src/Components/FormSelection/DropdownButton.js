@@ -4,7 +4,7 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { IconChevronUp } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
-function DropdownButton({ image, options, placeholder, selectedOption, optionSelection, disabled }) {
+function DropdownButton({ image, options, placeholder, selectedOption, optionSelection, disabled, handleNoDateClick }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +24,7 @@ function DropdownButton({ image, options, placeholder, selectedOption, optionSel
                 <div>{isOpen ? <IconChevronUp /> : <IconChevronDown />}</div>
             </div>
             {isOpen && (
-                <Dropdown options={options} dropdownClose={closeDropdown} setSelection={optionSelection} disabled={disabled}/>
+                <Dropdown options={options} dropdownClose={closeDropdown} setSelection={optionSelection} disabled={disabled} handleNoDateClick={handleNoDateClick}/>
             )
             }
         </div>

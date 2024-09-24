@@ -1,7 +1,8 @@
 import DropdownButton from "../FormSelection/DropdownButton";
 import OccasionIcon from "../../images/OccasionIcon.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 function Form({ openTimes, updateTimes }) {
   const [step, setStep] = useState(1);
@@ -20,6 +21,15 @@ function Form({ openTimes, updateTimes }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState("");
+
+  const dateInputRef = useRef(null);
+
+  const handleDateClick = () => {
+    // Trigger the click event of the other button
+    if (dateInputRef.current) {
+      dateInputRef.current.focus();
+    }
+  };
 
   const handleDateChange = (e) => {
     const newDateString = e.target.value;
@@ -46,6 +56,18 @@ function Form({ openTimes, updateTimes }) {
     } else {
       console.log("form submission failed");
     }
+  };
+  const [isValidPhone, setisValidPhone] = useState();
+  const validatePhoneNumber = () => {
+    const phoneRegex =
+      /^\+?[1-9]\d{0,2}[-.\s]?(\(?\d{1,4}?\)?[-.\s]?){1,3}\d{1,4}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      setisValidPhone(false);
+      console.log("not valid");
+      return "Must be a valid phone number";
+    }
+    setisValidPhone(true);
+    return undefined;
   };
 
   return (
@@ -96,11 +118,13 @@ function Form({ openTimes, updateTimes }) {
                 className={`date-selection-box ${date ? "date-selected" : ""}`}
               >
                 <input
+                  className={`date-input ${date ? "date-selected-input" : ""}`}
                   type="date"
                   id="date"
                   name="date"
                   value={date}
                   onChange={handleDateChange}
+                  ref={dateInputRef}
                   data-testid="date-input"
                 ></input>
               </div>
@@ -111,6 +135,7 @@ function Form({ openTimes, updateTimes }) {
                 selectedOption={time}
                 optionSelection={setTime}
                 disabled={date ? false : true}
+                handleNoDateClick={handleDateClick}
               />
               <div className="input-box"></div>
               <textarea
@@ -172,13 +197,14 @@ function Form({ openTimes, updateTimes }) {
                 Phone Number:
               </label>
               <input
-                className="contact-input fullwidth-input"
+                className={`contact-input fullwidth-input ${isValidPhone ? "input-complete" : ""}`}
                 type="tel"
                 id="phoneNumber"
                 name="phoneNumber"
                 placeholder="Phone Number*"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onBlur={validatePhoneNumber}
                 required
               />
 
