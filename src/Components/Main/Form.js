@@ -2,7 +2,6 @@ import DropdownButton from "../FormSelection/DropdownButton";
 import OccasionIcon from "../../images/OccasionIcon.png";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 
 function Form({ openTimes, updateTimes }) {
   const [step, setStep] = useState(1);
@@ -47,16 +46,12 @@ function Form({ openTimes, updateTimes }) {
     return true;
   };
 
-  const handleSubmit = (e, formData) => {
-    e.preventDefault();
-
-    if (submitAPI(formData)) {
-      console.log("form submitted");
-      navigate("/confirmedbooking");
-    } else {
-      console.log("form submission failed");
-    }
-  };
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+  });
 
   const [isComment, setIsComment] = useState();
 
@@ -73,16 +68,17 @@ function Form({ openTimes, updateTimes }) {
   const validatePhoneNumber = () => {
     const phoneRegex =
       /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+
+    setErrors((prevErrors) => ({ ...prevErrors, phoneNumber: "" }));
     if (!phoneNumber) {
       setIsValidPhone(false);
-      return "Phone number is required";
     } else if (!phoneRegex.test(phoneNumber)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneNumber: "Must be a valid Phone Number",
+      }));
       setIsValidPhone(false);
-      console.log("not valid");
-      return "Must be a valid phone number";
-    }
-    setIsValidPhone(true);
-    return undefined;
+    } else setIsValidPhone(true);
   };
 
   const [isValidFirstName, setIsValidFirstName] = useState();
@@ -91,16 +87,16 @@ function Form({ openTimes, updateTimes }) {
     const nameRegex =
       /^([a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+)*[.]{0,1}){1,2}$/;
 
+    setErrors((prevErrors) => ({ ...prevErrors, firstName: "" }));
     if (!firstName) {
       setIsValidFirstName(false);
-      return "First name is required";
     } else if (!nameRegex.test(firstName)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: "First Name must contain valid characters",
+      }));
       setIsValidFirstName(false);
-      return "First name must contain only letters";
-    }
-
-    setIsValidFirstName(true);
-    return undefined; // No error message if valid
+    } else setIsValidFirstName(true);
   };
 
   const [isValidLastName, setIsValidLastName] = useState();
@@ -109,16 +105,16 @@ function Form({ openTimes, updateTimes }) {
     const nameRegex =
       /^([a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+)*[.]{0,1}){1,2}$/;
 
+    setErrors((prevErrors) => ({ ...prevErrors, lastName: "" }));
     if (!lastName) {
       setIsValidLastName(false);
-      return "Last name is required";
     } else if (!nameRegex.test(lastName)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: "Last Name must contain valid characters",
+      }));
       setIsValidLastName(false);
-      return "Last name must contain only letters";
-    }
-
-    setIsValidLastName(true);
-    return undefined; // No error message if valid
+    } else setIsValidLastName(true);
   };
 
   const [isValidEmail, setIsValidEmail] = useState();
@@ -126,17 +122,56 @@ function Form({ openTimes, updateTimes }) {
   const validateEmail = () => {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
+    setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
     if (!email) {
       setIsValidEmail(false);
-      return "Email address is required";
     } else if (!emailRegex.test(email)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Must be a valid Email Address",
+      }));
       setIsValidEmail(false);
-      return "Must be a valid email address";
-    }
-
-    setIsValidEmail(true);
-    return undefined;
+    } else setIsValidEmail(true);
   };
+
+  const handleSubmit = (e, formData) => {
+    e.preventDefault();
+      if (submitAPI(formData)) {
+        console.log("form submitted");
+        navigate("/confirmedbooking");
+      } else {
+        console.log("form submission failed");
+      }
+  };
+
+  const [displayPhoneErrors, setDisplayPhoneErrors] = useState(false);
+
+  const showDisplayPhoneError = () => {
+    setDisplayPhoneErrors(true);
+  }
+
+  const hideDisplayPhoneError = () => {
+    setDisplayPhoneErrors(false);
+  }
+
+  const [displayEmailErrors, setDisplayEmailErrors] = useState(false);
+
+  const showDisplayEmailError = () => {
+    if (email.length > 1) {
+  setDisplayEmailErrors(true);
+    }
+  };
+
+  const hideDisplayEmailError = () => {
+  setDisplayEmailErrors(false);
+  };
+
+  useEffect(() => {
+    validateFirstName();
+    validateLastName();
+    validatePhoneNumber();
+    validateEmail();
+  }, [firstName, lastName, phoneNumber, email]);
 
   return (
     <form
@@ -238,7 +273,7 @@ function Form({ openTimes, updateTimes }) {
                 First Name:
               </label>
               <input
-                className={`contact-input ${
+                className={`contact-input fullwidth-input ${
                   isValidFirstName ? "input-complete" : ""
                 }`}
                 type="text"
@@ -247,15 +282,14 @@ function Form({ openTimes, updateTimes }) {
                 placeholder="First Name*"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                onBlur={validateFirstName}
                 required
               />
-
+              <p className="form-error show-error">{errors.firstName}</p>
               <label htmlFor="lastName" className="hidelabel">
                 Last Name:
               </label>
               <input
-                className={`contact-input ${
+                className={`contact-input fullwidth-input ${
                   isValidLastName ? "input-complete" : ""
                 }`}
                 type="text"
@@ -264,9 +298,9 @@ function Form({ openTimes, updateTimes }) {
                 placeholder="Last Name*"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                onBlur={validateLastName}
                 required
               />
+              <p className="form-error show-error">{errors.lastName}</p>
 
               <label htmlFor="phoneNumber" className="hidelabel">
                 Phone Number:
@@ -281,9 +315,12 @@ function Form({ openTimes, updateTimes }) {
                 placeholder="Phone Number*"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                onBlur={validatePhoneNumber}
+                onBlur={showDisplayPhoneError}
                 required
               />
+              <p className={`form-error ${
+                  displayPhoneErrors ? "show-error" : ""
+                }`}>{errors.phoneNumber}</p>
 
               <label htmlFor="email" className="hidelabel">
                 Email:
@@ -295,11 +332,15 @@ function Form({ openTimes, updateTimes }) {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email*"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onBlur={validateEmail}
+                onBlur={showDisplayEmailError}
+                required
               />
+              <p className={`form-error ${
+                  displayEmailErrors ? "show-error" : ""
+                }`}>{errors.email}</p>
               <label htmlFor="subscribe" className="showlabel">
                 Subscribe me to promotional emails:
               </label>
@@ -345,11 +386,8 @@ function Form({ openTimes, updateTimes }) {
               <button type="button" className="next-box" onClick={prevStep}>
                 Back
               </button>
-              <button
-                type="submit"
-                className="next-box submit-button"
-                disabled={!firstName || !lastName || !phoneNumber}
-              >
+              <button type="submit" className="next-box submit-button"
+              disabled={!isValidFirstName || !isValidLastName || !isValidPhone || !isValidEmail}>
                 Submit
               </button>
             </div>

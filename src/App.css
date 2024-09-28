@@ -287,14 +287,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color:#333333;
   background-color: #f4cf14ad;
 }
+.form-error {
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  color: red;
+  font-size: 1rem;
+}
+.show-error {
+  visibility: visible;
+}
 /*Step 2 Styles*/
 .contact-input {
   position: relative;
   display: flex;
   height: 55px;
   flex: 1 1 45%;
-  margin-bottom: 15px;
-  margin-top: 15px;
   min-width: 200px;
   border-radius: 16px;
   box-sizing: border-box;
@@ -302,8 +310,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border: 1px solid #333333;;
   color:#EDEFEE;
   font-size: 1.25rem;
-  padding: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
   transition: background-color 0.3s ease;
+  margin: 0px;
 }
 .fullwidth-input {
   flex: 1 1 100%;
