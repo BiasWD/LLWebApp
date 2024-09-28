@@ -3,7 +3,7 @@ import OccasionIcon from "../../images/OccasionIcon.png";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Form({ openTimes, updateTimes }) {
+function Form({ openTimes, updateTimes, testing }) {
   const [step, setStep] = useState(1);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
@@ -256,7 +256,7 @@ function Form({ openTimes, updateTimes }) {
                 type="button"
                 className="next-box"
                 onClick={nextStep}
-                disabled={!partySize || !seating || !occasion || !date || !time}
+                disabled={!testing && (!partySize || !seating || !occasion || !date || !time)}
               >
                 Next
               </button>

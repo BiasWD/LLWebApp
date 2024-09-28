@@ -47,7 +47,7 @@ function Main() {
 
   return (
     <main className="main-container">
-      <Form openTimes={times} updateTimes={updateTimes} />
+      <Form openTimes={times} updateTimes={updateTimes}/>
       <Aside />
     </main>
   );
