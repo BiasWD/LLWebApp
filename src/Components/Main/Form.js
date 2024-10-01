@@ -241,9 +241,13 @@ function Form({ openTimes, updateTimes, testing }) {
                 handleNoDateClick={handleDateClick}
               />
               <div className="input-box"></div>
+              <label htmlFor="comment" className="hidelabel">
+                Comment:
+              </label>
               <textarea
                 className={`comment-box ${isComment ? "input-complete" : ""}`}
                 placeholder="Add any additional comments here"
+                id="comment"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 onBlur={validateComment}

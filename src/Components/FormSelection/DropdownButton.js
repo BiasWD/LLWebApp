@@ -23,11 +23,20 @@ function DropdownButton({
     setIsOpen(false);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.code === "Enter" || event.code === "Space") {
+      event.preventDefault();
+      toggleDropdown();
+    }
+  };
+
   return (
-    <div className="DropdownWrapper" tabIndex={0} onBlur={closeDropdown}>
+    <div className="DropdownWrapper">
       <div
         className={`DropdownButton ${selectedOption ? "selected" : ""}`}
         onClick={toggleDropdown}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
       >
         <div>{image}</div>
         <div>{selectedOption || placeholder}</div>
@@ -40,6 +49,7 @@ function DropdownButton({
           setSelection={optionSelection}
           disabled={disabled}
           handleNoDateClick={handleNoDateClick}
+          isOpen={isOpen}
         />
       )}
     </div>
