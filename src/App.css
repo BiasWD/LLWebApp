@@ -204,7 +204,7 @@ form {
   margin-bottom: 15px;
   margin-top: 15px;
   min-width: 200px;
-  background-color:#333333;
+  background-color:white;
   border-radius: 16px;
   box-sizing: border-box;
 }
@@ -216,11 +216,12 @@ form {
   background-color: transparent;
   color:#75756A;
   font-size:1.2rem;
-  border: none;
+  border: #333333 2.5px solid;
   padding: 16px;
 }
 .date-selection-box .date-selected-input {
   color:#EDEFEE;
+  border:#495E57 2.5px solid;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
     background-color:#EDEFEE;
@@ -233,7 +234,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .date-selected {
-  background-color:#495E57 ;
+   background-color:#495E57;
 }
 .comment-box {
   height: 180px;
