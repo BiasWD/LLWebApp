@@ -173,6 +173,12 @@ function Form({ openTimes, updateTimes, testing }) {
     validateEmail();
   }, [firstName, lastName, phoneNumber, email]);
 
+  const [isOpenDD, setIsOpenDD] = useState("")
+
+  const openDD = (DD) => {
+    setIsOpenDD(DD);
+  }
+
   return (
     <form
       onSubmit={(e) =>
@@ -202,6 +208,8 @@ function Form({ openTimes, updateTimes, testing }) {
                 placeholder="Party Size"
                 selectedOption={partySize}
                 optionSelection={setPartySize}
+                isOpenDD={isOpenDD}
+                openDD={openDD}
               />
               <DropdownButton
                 image={<img src={OccasionIcon} />}
@@ -209,6 +217,8 @@ function Form({ openTimes, updateTimes, testing }) {
                 placeholder="Seating"
                 selectedOption={seating}
                 optionSelection={setSeating}
+                isOpenDD={isOpenDD}
+                openDD={openDD}
               />
               <DropdownButton
                 image={<img src={OccasionIcon} />}
@@ -216,6 +226,8 @@ function Form({ openTimes, updateTimes, testing }) {
                 placeholder="Occasion"
                 selectedOption={occasion}
                 optionSelection={setOccasion}
+                isOpenDD={isOpenDD}
+                openDD={openDD}
               />
               <div
                 className={`date-selection-box ${date ? "date-selected" : ""}`}
@@ -239,6 +251,8 @@ function Form({ openTimes, updateTimes, testing }) {
                 optionSelection={setTime}
                 disabled={date ? false : true}
                 handleNoDateClick={handleDateClick}
+                isOpenDD={isOpenDD}
+                openDD={openDD}
               />
               <div className="input-box"></div>
               <label htmlFor="comment" className="hidelabel">

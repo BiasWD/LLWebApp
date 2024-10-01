@@ -2,7 +2,7 @@ import "./Dropdown.css";
 import Dropdown from "./Dropdown.js";
 import { IconChevronDown } from "@tabler/icons-react";
 import { IconChevronUp } from "@tabler/icons-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function DropdownButton({
   image,
@@ -12,11 +12,19 @@ function DropdownButton({
   optionSelection,
   disabled,
   handleNoDateClick,
+  isOpenDD,
+  openDD,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    if (newIsOpen) {
+      openDD(placeholder);
+    } else {
+      openDD("");
+    }
   };
 
   const closeDropdown = () => {
@@ -29,6 +37,16 @@ function DropdownButton({
       toggleDropdown();
     }
   };
+
+  useEffect(() => {
+    if (isOpenDD !== placeholder && isOpenDD !== "") {
+      closeDropdown();
+    }
+
+    return () => {
+      // Cleanup logic here (if needed)
+    };
+  }, [isOpenDD]); // Dependency array
 
   return (
     <div className="DropdownWrapper">

@@ -58,7 +58,7 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
   }
-  .DropdownOption:hover {
+  .DropdownOption:hover, .DropdownOption:focus-visible {
     background-color: #FBDABB;
     color: #495E57;
   }
