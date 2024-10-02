@@ -359,7 +359,8 @@ function Form({ openTimes, updateTimes, testing }) {
               <p className={`form-error ${
                   displayEmailErrors ? "show-error" : ""
                 }`}>{errors.email}</p>
-              <label htmlFor="subscribe" className="showlabel">
+              <div className="checkbox-div">
+              <label htmlFor="subscribe" className="showlabel checkboxlabel">
                 Subscribe me to promotional emails:
               </label>
               <input
@@ -370,6 +371,7 @@ function Form({ openTimes, updateTimes, testing }) {
                 value={subscribed}
                 onChange={(e) => setSubscribed(e.target.value)}
               />
+              </div>
             </div>
           </div>
           <div className="form-bottom">
