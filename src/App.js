@@ -14,7 +14,7 @@ function App() {
       <div className="layout-container">
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Booking />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/confirmedbooking" element={<ConfirmedBooking />} />
         </Routes>

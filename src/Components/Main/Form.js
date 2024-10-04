@@ -1,5 +1,8 @@
 import DropdownButton from "../FormSelection/DropdownButton";
 import OccasionIcon from "../../images/OccasionIcon.png";
+import SeatingIcon from "../../images/SeatingIcon.png";
+import PartySizeIcon from "../../images/PartySizeIcon.png";
+import TimeIcon from "../../images/TimeIcon.png";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -203,7 +206,7 @@ function Form({ openTimes, updateTimes, testing }) {
             <h3>Reservation Details</h3>
             <div className="form-container">
               <DropdownButton
-                image={<img src={OccasionIcon} />}
+                image={<img src={PartySizeIcon} />}
                 options={[1, 2, 3, 4, 5, 6, 7, 8]}
                 placeholder="Party Size"
                 selectedOption={partySize}
@@ -212,7 +215,7 @@ function Form({ openTimes, updateTimes, testing }) {
                 openDD={openDD}
               />
               <DropdownButton
-                image={<img src={OccasionIcon} />}
+                image={<img src={SeatingIcon} />}
                 options={["Indoor", "Outdoor", "Any"]}
                 placeholder="Seating"
                 selectedOption={seating}
@@ -244,7 +247,7 @@ function Form({ openTimes, updateTimes, testing }) {
                 ></input>
               </div>
               <DropdownButton
-                image={<img src={OccasionIcon} />}
+                image={<img src={TimeIcon} />}
                 options={date ? openTimes : ["Please select a date"]}
                 placeholder="Time"
                 selectedOption={time}
@@ -254,7 +257,7 @@ function Form({ openTimes, updateTimes, testing }) {
                 isOpenDD={isOpenDD}
                 openDD={openDD}
               />
-              <div className="input-box"></div>
+              <div className="input-box mobile-hidden"></div>
               <label htmlFor="comment" className="hidelabel">
                 Comment:
               </label>
