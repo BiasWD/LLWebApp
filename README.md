@@ -1,4 +1,10 @@
-View the [High-uality Mockup](https://www.figma.com/design/Xd35ytV200lmC9vqey2kik/Little-Lemon-High-Quality-Mockup?node-id=0-1&t=8qaFBHqweZi0lVCY-1) with Figma.
+# Little Lemon Table Reservation Project
+
+## Design Process
+
+Click the link to view the [High-quality Mockup](https://www.figma.com/design/Xd35ytV200lmC9vqey2kik/Little-Lemon-High-Quality-Mockup?node-id=0-1&t=8qaFBHqweZi0lVCY-1) of this project on Figma.
+
+View the files in the Design Process Folder for some extra info on the project.
 
 # Getting Started with Create React App
 
