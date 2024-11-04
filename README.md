@@ -6,6 +6,17 @@ Click the link to view the [High-quality Mockup](https://www.figma.com/design/Xd
 
 View the files in the Design Process Folder for some extra info on the project.
 
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
