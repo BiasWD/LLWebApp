@@ -1,3 +1,5 @@
+View the [High-uality Mockup](https://www.figma.com/design/Xd35ytV200lmC9vqey2kik/Little-Lemon-High-Quality-Mockup?node-id=0-1&t=8qaFBHqweZi0lVCY-1) with Figma.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
