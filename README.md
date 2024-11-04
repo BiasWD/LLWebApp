@@ -6,16 +6,7 @@ Click the link to view the [High-quality Mockup](https://www.figma.com/design/Xd
 
 View the files in the Design Process Folder for some extra info on the project.
 
-
-
-
-
-
-
-
-
-
-
+__________________________________________________________________________________________________________________________________________________________________________________________________________
 
 # Getting Started with Create React App
 
